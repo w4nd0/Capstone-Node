@@ -28,13 +28,15 @@ export class CreateOrdersTable1642522884883 implements MigrationInterface {
           },
           {
             name: "number",
-            type: "number",
+            type: "int",
           },
           {
             name: "status",
-            type: "string",
+            type: "enum",
+            isNullable: false,
             enum: ["pending", "sent", "failed"],
-            default: "pending",
+            enumName: "order_status",
+            default: "'pending'",            
           },
           {
             name: "created_at",
