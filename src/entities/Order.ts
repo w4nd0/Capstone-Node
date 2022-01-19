@@ -31,13 +31,6 @@ class Order {
 
   @UpdateDateColumn()
   updated_at: Date;
-
-  @Column({
-    type: "enum",
-    enum: ["admin", "editor", "ghost"],
-    default: "ghost",
-  })
-  role: string;
 }
 
 export default Order;
