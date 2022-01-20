@@ -6,15 +6,18 @@ import { retrieve } from "../controllers/Orders/retrieveOrder";
 import { update } from "../controllers/Orders/updateOrder";
 
 import { admAuth } from "../middlewares/authentication/admAuth";
+import { schemaValidate } from "../middlewares/validate/schemaValidate";
+import { orderCreateSchema } from "../models/schemas/Order/orderCreate";
+import { orderUpdateSchema } from "../models/schemas/Order/orderUpdate";
 
 const orderRouter = Router();
 
 orderRouter.get("/:id", retrieve);
-orderRouter.post("", create);
+orderRouter.post("", schemaValidate(orderCreateSchema), create);
 orderRouter.delete("/:id", destroy);
 
 orderRouter.use(admAuth);
 orderRouter.get("", list);
-orderRouter.patch("/:id", update);
+orderRouter.patch("/:id", schemaValidate(orderUpdateSchema), update);
 
 export default orderRouter;
