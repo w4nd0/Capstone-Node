@@ -29,6 +29,9 @@ class OrderProduct {
   @Column()
   price: number;
 
+  @Column()
+  quantity: number;
+
   @CreateDateColumn()
   created_at: Date;
 
