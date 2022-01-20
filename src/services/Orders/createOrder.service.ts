@@ -3,7 +3,6 @@ import AppError from "../../errors/AppError";
 
 import Order from "../../entities/Order";
 import OrderProduct from "../../entities/OrderProduct";
-import Product from "../../entities/Product";
 
 interface IOrder {
   id: string;
