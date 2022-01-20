@@ -14,7 +14,6 @@ export default class ActivateUserService {
         const user = await userRepository.findOne({
             where: {
                 email,
-                isActive: false,
             }
         });
 
