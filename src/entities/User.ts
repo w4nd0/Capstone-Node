@@ -19,6 +19,9 @@ class User {
     @Column()
     isAdm: boolean;
 
+    @Column()
+    isActive: boolean;
+
     @CreateDateColumn()
     created_at: Date;
 
