@@ -6,14 +6,13 @@ import { retrive } from "../controllers/Products/retriveProduct";
 import { update } from "../controllers/Products/updateProduct";
 
 import { admAuth } from "../middlewares/authentication/admAuth";
-import userAuth from "../middlewares/authentication/userAuth";
 
 const productRouter = Router();
 
 productRouter.get("", list);
 productRouter.get("/:id", retrive);
 
-productRouter.use(userAuth, admAuth);
+productRouter.use(admAuth);
 
 productRouter.post("", create);
 productRouter.patch("/:id", update);
