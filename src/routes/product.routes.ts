@@ -13,7 +13,7 @@ const productRouter = Router();
 productRouter.get("", list);
 productRouter.get("/:id", retrive);
 
-// productRouter.use(userAuth);
+productRouter.use(userAuth, admAuth);
 
 productRouter.post("", create);
 productRouter.patch("/:id", update);
