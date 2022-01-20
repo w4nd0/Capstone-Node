@@ -5,7 +5,7 @@ import { list } from "../controllers/Products/listProduct";
 import { retrive } from "../controllers/Products/retriveProduct";
 import { update } from "../controllers/Products/updateProduct";
 
-import { admAuth } from "../middlewares/authentication/admAuth";
+import admAuth from "../middlewares/authentication/admAuth";
 
 const productRouter = Router();
 
