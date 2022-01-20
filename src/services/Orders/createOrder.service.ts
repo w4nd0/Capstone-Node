@@ -5,7 +5,6 @@ import Order from "../../entities/Order";
 import OrderProduct from "../../entities/OrderProduct";
 
 interface IOrder {
-  id: string;
   userId: string;
   city: string;
   street: string;
@@ -33,7 +32,7 @@ class CreateOrderService {
       products_ids.forEach(async (productId) => {
         const orderProduct = orderProductsRepository.create({
           order: {
-            id: order.id,
+            id: newOrder.id,
           },
           product: {
             id: productId,
