@@ -9,7 +9,6 @@ interface IOrder {
   city: string;
   street: string;
   number: number;
-  products_ids: string[];
 }
 
 interface IRequest {
