@@ -11,7 +11,7 @@ interface TokenPayload {
     sub: string;
 }
 
-export const admAuth = async (request: Request, response: Response, next: NextFunction) => {
+export default async function admAuth (request: Request, response: Response, next: NextFunction) {
     const authHeader = request.headers.authorization;
 
     if (!authHeader) {
