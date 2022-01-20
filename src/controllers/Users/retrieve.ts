@@ -1,3 +1,4 @@
+import { instanceToInstance } from "class-transformer";
 import { Request, Response } from "express";
 import RetrieveUserService from "../../services/User/RetriveUser.service";
 
@@ -7,5 +8,5 @@ export const retrieve = async (request: Request, response: Response) => {
         id: request.user.id
     });
   
-    return response.json(user);
+    return response.json(instanceToInstance(user));
 };
