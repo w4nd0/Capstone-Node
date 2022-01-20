@@ -2,7 +2,7 @@ import Product from "../../entities/Product";
 import { getRepository } from "typeorm";
 import AppError from "../../errors/AppError";
 
-class RetriveProductService {
+class RetrieveProductService {
   async execute(id: string): Promise<Product | Error> {
     const productsRepository = getRepository(Product);
 
@@ -15,4 +15,4 @@ class RetriveProductService {
     return product;
   }
 }
-export default RetriveProductService;
+export default RetrieveProductService;
