@@ -6,5 +6,5 @@ export const create = async (request: Request, response: Response) => {
 
   const newProduct = await createProductService.execute(request.body);
 
-  return response.json(newProduct);
+  return response.status(201).json(newProduct);
 };
