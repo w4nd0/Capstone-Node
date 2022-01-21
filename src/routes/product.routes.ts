@@ -5,7 +5,7 @@ import { list } from "../controllers/Products/list";
 import { retrieve } from "../controllers/Products/retrieve";
 import { update } from "../controllers/Products/update";
 
-import { admAuth } from "../middlewares/authentication/admAuth";
+import admAuth from "../middlewares/authentication/admAuth";
 import { schemaValidate } from "../middlewares/validate/schemaValidate";
 import { productCreateSchema } from "../models/schemas/Product/productCreate";
 import { productUpdateSchema } from "../models/schemas/Product/productUpdate";
