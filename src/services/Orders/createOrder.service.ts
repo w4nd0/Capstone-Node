@@ -5,25 +5,32 @@ import Order from "../../entities/Order";
 import OrderProduct from "../../entities/OrderProduct";
 
 interface IOrder {
-  userId: string;
   city: string;
   street: string;
   number: number;
 }
 
 interface IRequest {
+  userId: string;
   order: IOrder;
   products_ids: string[];
 }
+
 class CreateOrderService {
-  async execute(request: IRequest): Promise<Order | Error> {
+  async execute({
+    userId,
+    order,
+    products_ids,
+  }: IRequest): Promise<Order | Error> {
     try {
-      const { order, products_ids } = request;
       const orderRepository = getRepository(Order);
       const orderProductsRepository = getRepository(OrderProduct);
 
       const newOrder = orderRepository.create({
-        ...order,
+        userId: userId,
+        city: order.city,
+        street: order.street,
+        number: order.number,
       });
 
       await orderRepository.save(order);
