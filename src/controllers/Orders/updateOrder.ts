@@ -1,3 +1,4 @@
+import { instanceToInstance } from "class-transformer";
 import { Request, Response } from "express";
 import updateOrdersservice from "../../services/Orders/updateOrder.service";
 
@@ -10,5 +11,5 @@ export const update = async (request: Request, response: Response) => {
 
   const updateOrder = await updateOrderservice.execute({ id, ...data });
 
-  return response.json(updateOrder);
+  return response.json(instanceToInstance(updateOrder));
 };
