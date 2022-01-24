@@ -17,12 +17,12 @@ export default class ActivateUserService {
             }
         });
 
-        if (!user) throw new AppError("User not found.")
+        if (!user) throw new AppError("Wrong email/password.", 401)
 
         const passwordMatch = await compare(password, user.password);
 
         if (!passwordMatch) {
-          throw new AppError("Wrong email/password", 401);
+          throw new AppError("Wrong email/password.", 401);
         };
     
         user.isActive = true;
