@@ -1,10 +1,27 @@
 <style>
   .message-content { font-family: Arial, Helvetica, sans-serif; max-width:
   600px; font-size: 18px; line-height: 21px; }
+
+  p > span {
+    font-weight: bold;
+  }
+
+  .token {
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgb(20, 152, 228);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
 </style>
 <div class="message-content">
   <h2>Olá {{name}}</h2>
-  <p>Você requisitou por uma redefinição de senha</p>
-  <p>Por favor use o código abaixo para redefinir sua senha</p>
-  <p>Token: {{token}}</p>
+  <p>Você requisitou por uma redefinição de senha.</p>
+  <p>Por favor use o código abaixo para redefinir sua senha.</p>
+  <p><span>Token: </span></p>
+  <p class="token">{{token}}</p>
 </div>
