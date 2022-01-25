@@ -92,13 +92,6 @@ describe("Testing the user routes with success", () => {
         Authorization: `Bearer ${token}`,
       });
 
-    expect(response.body).toHaveProperty("id");
-    expect(response.body).toHaveProperty("name");
-    expect(response.body).toHaveProperty("email");
-    expect(response.body).toHaveProperty("isAdm");
-    expect(response.body).toHaveProperty("isActive");
-    expect(response.body).toHaveProperty("created_at");
-    expect(response.body).toHaveProperty("updated_at");
     expect(response.status).toBe(200);
     expect(response.body.name).toBe(updateUserData.name);
     expect(response.body.email).toBe(updateUserData.email);
@@ -127,10 +120,7 @@ describe("Testing the user routes with success", () => {
     const adm = await createUserService.execute({ ...admData });
 
     const userRepository = getRepository(User);
-    await userRepository.update(
-      { id: adm.id },
-      { isAdm: true }
-    );
+    await userRepository.update({ id: adm.id }, { isAdm: true });
     admId = adm.id;
 
     const loginResponse = await request(app).post("/login").send({
