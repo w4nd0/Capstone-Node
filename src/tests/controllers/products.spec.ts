@@ -182,7 +182,7 @@ describe("Testing the user routes with failure", () => {
 
     expect(response.body).toHaveProperty("message");
     expect(response.body.message).toBe("Product not found");
-    expect(response.status).toBe(400);
+    expect(response.status).toBe(404);
   });
 
   it("Should not be able to update the product informations if not adm", async () => {
