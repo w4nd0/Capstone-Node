@@ -25,9 +25,9 @@ export default class UpdateAddressService {
 
         if (address.userId !== userId) throw new AppError("Unauthorized", 401);
 
-        addressData.city ? (address.city === addressData.city) : address.city
-        addressData.street ? (address.street === addressData.street) : address.street
-        addressData.number ? (address.number === addressData.number) : address.number
+        addressData.city ? (address.city = addressData.city) : address.city
+        addressData.street ? (address.street = addressData.street) : address.street
+        addressData.number ? (address.number = addressData.number) : address.number
 
         await addressRepository.save(address);
 
