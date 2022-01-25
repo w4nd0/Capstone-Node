@@ -3,6 +3,7 @@ import connection from "../../database";
 import request from "supertest";
 import app from "../../app";
 import User from "../../entities/User";
+import CreateUserService from "../../services/User/CreateUser.service";
 
 describe("Testing the user routes with success", () => {
   beforeAll(async () => {
@@ -24,7 +25,7 @@ describe("Testing the user routes with success", () => {
   const userData = {
     name: "teste",
     email: "teste@teste.com",
-    password: "12345678",
+    password: "2345678",
   };
 
   const admData = {
@@ -122,14 +123,15 @@ describe("Testing the user routes with success", () => {
   });
 
   it("Should be able to see user list if admin", async () => {
-    const userRepository = getRepository(User);
-    const user = userRepository.create({
-      ...admData,
-      isAdm: true,
-    });
-    await userRepository.save(user);
+    const createUserService = new CreateUserService();
+    const adm = await createUserService.execute({ ...admData });
 
-    admId = user.id;
+    const userRepository = getRepository(User);
+    await userRepository.update(
+      { id: adm.id },
+      { isAdm: true }
+    );
+    admId = adm.id;
 
     const loginResponse = await request(app).post("/login").send({
       email: admData.email,
