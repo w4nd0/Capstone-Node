@@ -4,7 +4,6 @@ export const orderCreateSchema = yup.object().shape({
   order: yup
     .object()
     .shape({
-      userId: yup.string().required(),
       city: yup.string().required(),
       street: yup.string().required(),
       number: yup.number().required().positive(),
