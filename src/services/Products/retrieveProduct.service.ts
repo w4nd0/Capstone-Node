@@ -9,7 +9,7 @@ class RetrieveProductService {
     const product = await productsRepository
       .findOneOrFail({ id })
       .catch((error: any) => {
-        throw new AppError("Product not found");
+        throw new AppError("Product not found", 404);
       });
 
     return product;

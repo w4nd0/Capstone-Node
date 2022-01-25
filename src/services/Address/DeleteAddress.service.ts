@@ -16,7 +16,7 @@ export default class DeleteAddressService {
             }
         })
 
-        if (!address) throw new AppError("Address not found.");
+        if (!address) throw new AppError("Address not found.", 404);
         
         if (address.userId !== userId) throw new AppError("Unauthorized", 401);
 
