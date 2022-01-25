@@ -16,7 +16,7 @@ export default class DisableUserService {
             }
         });
 
-        if (!user) throw new AppError("User not found.")
+        if (!user) throw new AppError("User not found.", 404)
 
         user.isActive = false;
 

@@ -20,7 +20,7 @@ export default class PasswordResetTokenService {
             }
         });
         if (!user) {
-            throw new AppError("User does not exist");
+            throw new AppError("User does not exist", 404);
         };
 
         const tokenRepository = getRepository(Token);
