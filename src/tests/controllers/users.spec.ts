@@ -25,7 +25,7 @@ describe("Testing the user routes with success", () => {
   const userData = {
     name: "teste",
     email: "teste@teste.com",
-    password: "2345678",
+    password: "12345678",
   };
 
   const admData = {
