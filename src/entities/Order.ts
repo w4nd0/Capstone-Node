@@ -41,7 +41,7 @@ class Order {
 
   @Expose({ name: "subtotal" })
   getSubtotal(): number {
-    const subtotal = this.products.reduce(
+    const subtotal = this.products?.reduce(
       (acc, actual) => acc + Number(actual.price * actual.quantity),
       0
     );
