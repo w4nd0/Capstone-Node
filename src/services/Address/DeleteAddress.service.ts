@@ -4,10 +4,11 @@ import AppError from "../../errors/AppError";
 
 interface Request {
     id: string;
+    userId: string;
 };
 
 export default class DeleteAddressService {
-    public async execute({ id }: Request): Promise<DeleteResult> {
+    public async execute({ id, userId }: Request): Promise<DeleteResult> {
         const addressRepository = getRepository(Address);
         const address = await addressRepository.findOne({
             where: {
@@ -16,6 +17,8 @@ export default class DeleteAddressService {
         })
 
         if (!address) throw new AppError("Address not found.");
+        
+        if (address.userId !== userId) throw new AppError("Unauthorized", 401);
 
         return addressRepository.delete(id);
     }
