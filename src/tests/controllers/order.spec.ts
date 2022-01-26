@@ -17,11 +17,6 @@ describe("Testing the order routes with success", () => {
     await userRepository.update({ id: user.id }, { isAdm: true });
     const adm = await userRepository.findOneOrFail({ id: user.id });
 
-    const login = await request(app).post("/login").send({
-      email: admData.email,
-      password: admData.password,
-    });
-
     const newProduct = await new CreateProductService().execute({
       ...productData,
     });
@@ -31,10 +26,17 @@ describe("Testing the order routes with success", () => {
       name: newProduct.name,
     });
 
-    userId = adm.id;
+    productInfo.id = product.id;
+    orderData.products = [productInfo];
+
+    const login = await request(app).post("/login").send({
+      email: admData.email,
+      password: admData.password,
+    });
+
     token = login.body.token;
-    productId = product.id;
-    orderData.products_ids = [productId];
+    userId = adm.id;
+    orderData.userId = userId;
   });
 
   afterAll(async () => {
@@ -47,12 +49,23 @@ describe("Testing the order routes with success", () => {
 
   let token = "";
   let userId = "";
-  let productId = "";
   let orderId = "";
+
+  const admData = {
+    name: "adm",
+    email: "adm@teste.com",
+    password: "12345678",
+  };
+
+  let productInfo = {
+    id: "",
+    quantity: 5,
+  };
 
   const orderData = {
     order: { city: "teste", street: "teste", number: 5 },
-    products_ids: [productId],
+    products: [productInfo],
+    userId: "",
   };
 
   const productData = {
@@ -61,16 +74,13 @@ describe("Testing the order routes with success", () => {
     price: 50,
   };
 
-  const admData = {
-    name: "adm",
-    email: "adm",
-    password: "12345678",
-  };
-
-  let admId = "";
-
   it("Should be able to create a new order", async () => {
-    const response = await request(app).post("/orders").send(orderData);
+    const response = await request(app)
+      .post("/orders")
+      .send(orderData)
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
 
     orderId = response.body.id;
 
@@ -86,7 +96,11 @@ describe("Testing the order routes with success", () => {
   });
 
   it("Should be able to get the order informations", async () => {
-    const response = await request(app).get(`/orders/${orderId}`);
+    const response = await request(app)
+      .get(`/orders/${orderId}`)
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
 
     expect(response.body).toHaveProperty("id");
     expect(response.body).toHaveProperty("city");
@@ -130,11 +144,15 @@ describe("Testing the order routes with success", () => {
     expect(response.body).toHaveProperty("created_at");
     expect(response.body).toHaveProperty("updated_at");
     expect(response.status).toBe(200);
-    expect(response.body.name).toBe(updateOrderData.status);
+    expect(response.body.status).toBe(updateOrderData.status);
   });
 
   it("Should be able to delete the order informations", async () => {
-    const response = await request(app).delete(`/orders/${orderId}`);
+    const response = await request(app)
+      .delete(`/orders/${orderId}`)
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
 
     expect(response.status).toBe(204);
   });
@@ -196,11 +214,15 @@ describe("Testing the order routes with failure", () => {
   };
 
   it("Should not be able to get the orders informations with wrong id", async () => {
-    const response = await request(app).get(`/orders/idinexistente5`);
+    const response = await request(app)
+      .get(`/orders/idinexistente5`)
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
 
     expect(response.body).toHaveProperty("message");
     expect(response.body.message).toBe("Order not found");
-    expect(response.status).toBe(400);
+    expect(response.status).toBe(404);
   });
 
   it("Should not be able to update the order information if not adm", async () => {
@@ -222,7 +244,7 @@ describe("Testing the order routes with failure", () => {
 
   it("Should not be able to get list of orders if not adm", async () => {
     const response = await request(app)
-      .get(`/orders}`)
+      .get(`/orders`)
       .set({
         Authorization: `Bearer ${token}`,
       });
