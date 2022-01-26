@@ -9,7 +9,7 @@ class DeleteOrderService {
     const order = await ordersRepository.findOne({ id });
 
     if (!order) {
-      throw new AppError("order not found", 404);
+      throw new AppError("Order not found", 404);
     }
 
     return await ordersRepository.delete(id);

@@ -1,6 +1,5 @@
 import { instanceToInstance } from "class-transformer";
 import { Request, Response } from "express";
-import AppError from "../../errors/AppError";
 import CreateOrderService from "../../services/Orders/createOrder.service";
 import RetrieveOrderService from "../../services/Orders/retrieveOrder.service";
 
@@ -13,5 +12,5 @@ export const create = async (request: Request, response: Response) => {
     ...request.body,
   });
 
-  return response.json(instanceToInstance(newOrder));
+  return response.status(201).json(instanceToInstance(newOrder));
 };
