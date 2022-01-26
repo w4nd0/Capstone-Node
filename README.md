@@ -32,7 +32,7 @@ yarn test
 ```
 
 ## 📦 Desenvolvimento
-Esta api foi hospedada em [capstone_nodejs](https://capstone_nodejs.herokuapp.com) na plataforma [Heroku](https://www.heroku.com/home) em uma conta gratuita.
+Esta api foi hospedada em [capstone_nodejs](https://capstone-nodejs.herokuapp.com) na plataforma [Heroku](https://www.heroku.com/home) em uma conta gratuita.
  
 É possivel ver os endpoints da api na documentação [Capstone_nodejs](https://capstone-nodejs.herokuapp.com/api-documentation)
 
