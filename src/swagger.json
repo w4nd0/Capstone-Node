@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Kenzie Pizzas API",
-    "description": "Lista com as rotas da API, projeto do capstone Q4 utilizando Node.js",
+    "description": "Lista com as rotas da API, projeto do capstone Q4 utilizando Node.js.",
     "contact": {
       "name": "API Ajuda",
       "url": "http://www.kenzie-pizza.com/support",
@@ -14,11 +14,11 @@
   "servers": [
     {
       "url": "http://localhost:3000/",
-      "description": "local"
+      "description": "local."
     },
     {
       "url": "https://capstone-nodejs.herokuapp.com/",
-      "description": "production"
+      "description": "production."
     }
   ],
 
@@ -26,7 +26,7 @@
     "/users": {
       "post": {
         "summary": "Cadastro de usuário",
-        "description": "Essa rota é responsável por cadastrar um usuário",
+        "description": "Essa rota é responsável por cadastrar um usuário.",
         "tags": ["Users"],
         "requestBody": {
           "content": {
@@ -37,10 +37,10 @@
         },
         "responses": {
           "400": {
-            "description": "E-mail already registered"
+            "description": "E-mail already registered."
           },
           "201": {
-            "description": "Created",
+            "description": "Created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -54,15 +54,15 @@
       },
       "get": {
         "summary": "Lista todos os usuários",
-        "description": "Essa rota é responsável por listar todos os usuários",
+        "description": "Essa rota é responsável por listar todos os usuários (Somente Administrador).",
         "tags": ["Users"],
         "security": [{ "bearerAuth": [] }],
         "responses": {
           "401": {
-            "description": "Missing authorization headers"
+            "description": "Missing authorization headers."
           },
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -78,20 +78,20 @@
     "/users/profile": {
       "get": {
         "summary": "Buscar um usuário",
-        "description": "Essa rota é responsável por buscar um usuário",
+        "description": "Essa rota é responsável por buscar um usuário.",
         "tags": ["Users"],
         "security": [{ "bearerAuth": [] }],
         "responses": {
           "400": {
-            "description": "JWT Expired or sended in a wrong way"
+            "description": "JWT Expired or sended in a wrong way."
           },
           "401": {
-            "description": "Missing authorization headers"
+            "description": "Missing authorization headers."
           },
-          "404": { "description": "User not found" },
+          "404": { "description": "User not found." },
 
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -105,7 +105,7 @@
       },
       "patch": {
         "summary": "Atualiza um usuário",
-        "description": "Essa rota é responsável por atualizar um usuário",
+        "description": "Essa rota é responsável por atualizar um usuário.",
         "tags": ["Users"],
         "security": [{ "bearerAuth": [] }],
         "requestBody": {
@@ -126,13 +126,13 @@
         },
         "responses": {
           "400": {
-            "description": "'JWT Expired or sended in a wrong way', 'User not found.'"
+            "description": "'JWT Expired or sended in a wrong way', 'User not found.'."
           },
           "401": {
-            "description": "JWT is missing"
+            "description": "JWT is missing."
           },
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -148,19 +148,19 @@
     "/users/disable": {
       "post": {
         "summary": "Desativa um usuário",
-        "description": "Essa rota é responsável por desativar um usuário",
+        "description": "Essa rota é responsável por desativar um usuário.",
         "tags": ["Users"],
         "security": [{ "bearerAuth": [] }],
         "responses": {
           "400": {
-            "description": "'JWT Expired or sended in a wrong way', 'User not found.'"
+            "description": "'JWT Expired or sended in a wrong way', 'User not found.'."
           },
-          "404": { "description": "User not found" },
+          "404": { "description": "User not found."},
           "401": {
-            "description": "JWT is missing"
+            "description": "JWT is missing."
           },
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -176,7 +176,7 @@
     "/login": {
       "post": {
         "summary": "Acessar uma conta de usuário",
-        "description": "Essa rota é responsável por fazer o login do usuário",
+        "description": "Essa rota é responsável por fazer o login do usuário.",
         "tags": ["Users"],
         "requestBody": {
           "content": {
@@ -187,10 +187,10 @@
         },
         "responses": {
           "400": {
-            "description": "Wrong email/password"
+            "description": "Wrong email/password."
           },
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "examples": {
@@ -213,7 +213,7 @@
     "/update_adm": {
       "patch": {
         "summary": "Atualiza um usuário para o tipo administrador",
-        "description": "Essa rota é responsável por atualizar a conta do usuário para administrador",
+        "description": "Essa rota é responsável por atualizar a conta do usuário para administrador (Somente Administrador).",
         "tags": ["Users"],
         "security": [{ "bearerAuth": [] }],
         "requestBody": {
@@ -231,14 +231,14 @@
         },
         "responses": {
           "400": {
-            "description": "JWT Expired or sended in a wrong way"
+            "description": "JWT Expired or sended in a wrong way."
           },
           "401": {
-            "description": "JWT is missing"
+            "description": "JWT is missing."
           },
-          "404": { "description": "User not found" },
+          "404": { "description": "User not found." },
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -252,10 +252,11 @@
       }
     },
 
+
     "/recovery": {
       "post": {
         "summary": "Solicita mudança de senha",
-        "description": "Essa rota é responsável por trocar a senha, enviando um token no email do usuário.",
+        "description": "Essa rota é responsável por trocar a senha, enviando um token no email do usuário..",
         "tags": ["Passwords"],
         "requestBody": {
           "content": {
@@ -275,10 +276,10 @@
         },
         "responses": {
           "500": {
-            "description": "Error while sending the email"
+            "description": "Error while sending the email."
           },
           "200": {
-            "description": "Token sendded to your email."
+            "description": "Token sendded to your email.."
           }
         }
       }
@@ -286,7 +287,7 @@
     "/change_password": {
       "post": {
         "summary": "Realiza a troca da senha do usuário.",
-        "description": "Essa rota é responsável por efetuar a troca de senha.",
+        "description": "Essa rota é responsável por efetuar a troca de senha..",
         "tags": ["Passwords"],
         "requestBody": {
           "content": {
@@ -297,10 +298,10 @@
         },
         "responses": {
           "400": {
-            "description": "'E-mail already registered', 'User does not exist', 'Password and Confirmation don't match.'"
+            "description": "'E-mail already registered', 'User does not exist', 'Password and Confirmation don't match.'."
           },
           "200": {
-            "description": "Password updated."
+            "description": "Password updated.."
           }
         }
       }
@@ -309,7 +310,7 @@
     "/product": {
       "post": {
         "summary": "Cadastro de produto",
-        "description": "Essa rota é responsável por cadastrar um produto",
+        "description": "Essa rota é responsável por cadastrar um produto (Somente Administrador).",
         "tags": ["Products"],
         "security": [{ "bearerAuth": [] }],
         "requestBody": {
@@ -324,13 +325,13 @@
         },
         "responses": {
           "400": {
-            "description": "'Missing admin permissions', 'JWT Expired or sended in a wrong way'"
+            "description": "'Missing admin permissions', 'JWT Expired or sended in a wrong way'."
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "201": {
-            "description": "Created",
+            "description": "Created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -344,14 +345,14 @@
       },
       "get": {
         "summary": "Lista todos os produtos",
-        "description": "Essa rota é responsável por listar todos os produtos",
+        "description": "Essa rota é responsável por listar todos os produtos.",
         "tags": ["Products"],
         "responses": {
           "401": {
-            "description": "Missing authorization headers"
+            "description": "Missing authorization headers."
           },
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -367,13 +368,13 @@
     "/product/{id}": {
       "get": {
         "summary": "Buscar um produto",
-        "description": "Essa rota é responsável por buscar um produto",
+        "description": "Essa rota é responsável por buscar um produto..",
         "tags": ["Products"],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID do produto",
+            "description": "ID do produto.",
             "required": true,
             "type": "string",
             "format": "uuid"
@@ -381,7 +382,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -394,8 +395,8 @@
         }
       },
       "patch": {
-        "summary": "Atualizar um produto",
-        "description": "Essa rota é responsável por atualizar um produto",
+        "summary": "Atualiza um produto",
+        "description": "Essa rota é responsável por atualizar um produto (Somente Administrador)..",
         "tags": ["Products"],
         "security": [{ "bearerAuth": [] }],
         "requestBody": {
@@ -410,14 +411,14 @@
         },
         "responses": {
           "400": {
-            "description": "JWT Expired or sended in a wrong way"
+            "description": "JWT Expired or sended in a wrong way."
           },
           "401": {
-            "description": "JWT is missing"
+            "description": "JWT is missing."
           },
-          "404": { "description": "Product not found" },
+          "404": { "description": "Product not found."},
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -425,7 +426,7 @@
                   "example": {
                     "id": "073273f2-1984-4d1f-8326-1411880dc7b4",
                     "name": "Pizza de Atum",
-                    "description": "Atum desfiado, molho de tomate",
+                    "description": "Atum desfiado, molho de tomate.",
                     "price": 45,
                     "created_at": "2022-01-24T21:37:17.251Z",
                     "updated_at": "2022-01-24T21:37:17.251Z"
@@ -438,14 +439,14 @@
       },
       "delete": {
         "summary": "Deleta um produto",
-        "description": "Essa rota é responsável por deletar um produto",
+        "description": "Essa rota é responsável por deletar um produto (Somente Administrador)..",
         "tags": ["Products"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID do carrinho",
+            "description": "ID do carrinho.",
             "required": true,
             "type": "string",
             "format": "uuid"
@@ -453,22 +454,23 @@
         ],
         "responses": {
           "400": {
-            "description": "'JWT Expired or sended in a wrong way', 'Product not found'"
+            "description": "'JWT Expired or sended in a wrong way', 'Product not found'."
           },
           "401": {
-            "description": "JWT is missing"
+            "description": "JWT is missing."
           },
           "204": {
-            "description": "No body returned for response"
+            "description": "No body returned for response."
           }
         }
       }
     },
 
+
     "/order": {
       "post": {
         "summary": "Realiza uma compra",
-        "description": "Essa rota é responsável por finalizar uma compra",
+        "description": "Essa rota é responsável por finalizar uma compra.",
         "tags": ["Orders"],
         "security": [{ "bearerAuth": [] }],
         "requestBody": {
@@ -483,14 +485,14 @@
         },
         "responses": {
           "400": {
-            "description": "JWT Expired or sended in a wrong way"
+            "description": "JWT Expired or sended in a wrong way."
           },
           "401": {
-            "description": "JWT is missing"
+            "description": "JWT is missing."
           },
-          "404": { "description": "Product not found" },
+          "404": { "description": "Product not found."},
           "201": {
-            "description": "Created",
+            "description": "Created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -504,15 +506,15 @@
       },
       "get": {
         "summary": "Lista todas as compras",
-        "description": "Essa rota é responsável por listar todas as compras",
+        "description": "Essa rota é responsável por listar todas as compras (Somente Administrador).",
         "tags": ["Orders"],
         "security": [{ "bearerAuth": [] }],
         "responses": {
           "401": {
-            "description": "Missing admin permissions"
+            "description": "Missing admin permissions."
           },
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -528,14 +530,14 @@
     "/order/{id}": {
       "get": {
         "summary": "Buscar uma compra",
-        "description": "Essa rota é responsável por buscar uma compra",
+        "description": "Essa rota é responsável por buscar uma compra.",
         "tags": ["Orders"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID da compra",
+            "description": "ID da compra.",
             "required": true,
             "type": "string",
             "format": "uuid"
@@ -543,7 +545,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -557,14 +559,14 @@
       },
       "patch": {
         "summary": "Atualiza o status de uma compra",
-        "description": "Essa rota é responsável por atualizar o andamento de uma compra",
+        "description": "Essa rota é responsável por atualizar o andamento de uma compra (Somente Administrador).",
         "tags": ["Orders"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID da compra",
+            "description": "ID da compra.",
             "required": true,
             "type": "string",
             "format": "uuid"
@@ -584,14 +586,14 @@
         },
         "responses": {
           "400": {
-            "description": "'JWT Expired or sended in a wrong way', 'Product not found'"
+            "description": "'JWT Expired or sended in a wrong way', 'Product not found'."
           },
           "401": {
-            "description": "JWT is missing"
+            "description": "JWT is missing."
           },
-          "404": { "description": "Not found any Order with this id" },
+          "404": { "description": "Not found any Order with this id."},
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -605,14 +607,14 @@
       },
       "delete": {
         "summary": "Deleta uma compra",
-        "description": "Essa rota é responsável por deletar uma compra",
+        "description": "Essa rota é responsável por deletar uma compra.",
         "tags": ["Orders"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID da compra",
+            "description": "ID da compra.",
             "required": true,
             "type": "string",
             "format": "uuid"
@@ -620,23 +622,24 @@
         ],
         "responses": {
           "400": {
-            "description": "JWT Expired or sended in a wrong way"
+            "description": "JWT Expired or sended in a wrong way."
           },
           "401": {
-            "description": "JWT is missing"
+            "description": "JWT is missing."
           },
-          "404": { "description": "Order not found" },
+          "404": { "description": "Order not found."},
           "204": {
-            "description": "No body returned for response"
+            "description": "No body returned for response."
           }
         }
       }
     },
 
+
     "/addresses": {
       "post": {
         "summary": "Realiza a criação de um endereço",
-        "description": "Essa rota é responsável por adicionar um endereço",
+        "description": "Essa rota é responsável por adicionar um endereço.",
         "tags": ["Addresses"],
         "security": [{ "bearerAuth": [] }],
         "requestBody": {
@@ -651,13 +654,13 @@
         },
         "responses": {
           "400": {
-            "description": "JWT Expired or sended in a wrong way"
+            "description": "JWT Expired or sended in a wrong way."
           },
           "401": {
-            "description": "JWT is missing"
+            "description": "JWT is missing."
           },
           "201": {
-            "description": "Created",
+            "description": "Created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -671,17 +674,17 @@
       },
       "get": {
         "summary": "Lista todos os endereços",
-        "description": "Essa rota é responsável por listar todos os endereços",
+        "description": "Essa rota é responsável por listar todos os endereços.",
         "tags": ["Addresses"],
         "responses": {
           "400": {
-            "description": "JWT Expired or sended in a wrong way"
+            "description": "JWT Expired or sended in a wrong way."
           },
           "401": {
-            "description": "JWT is missing"
+            "description": "JWT is missing."
           },
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -697,13 +700,13 @@
     "/addresses/{id}": {
       "get": {
         "summary": "Buscar um endereço",
-        "description": "Essa rota é responsável por buscar um endereço",
+        "description": "Essa rota é responsável por buscar um endereço.",
         "tags": ["Addresses"],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID do endereço",
+            "description": "ID do endereço.",
             "required": true,
             "type": "string",
             "format": "uuid"
@@ -711,13 +714,13 @@
         ],
         "responses": {
           "400": {
-            "description": "JWT Expired or sended in a wrong way"
+            "description": "JWT Expired or sended in a wrong way."
           },
           "401": {
-            "description": "JWT is missing"
+            "description": "JWT is missing."
           },
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -731,14 +734,14 @@
       },
       "patch": {
         "summary": "Atualiza um endereço",
-        "description": "Essa rota é responsável por atualizar um endereço",
+        "description": "Essa rota é responsável por atualizar um endereço.",
         "tags": ["Addresses"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID do endereço",
+            "description": "ID do endereço.",
             "required": true,
             "type": "string",
             "format": "uuid"
@@ -760,14 +763,14 @@
         },
         "responses": {
           "400": {
-            "description": "'JWT Expired or sended in a wrong way', 'Product not found'"
+            "description": "'JWT Expired or sended in a wrong way', 'Product not found'."
           },
           "401": {
-            "description": "JWT is missing"
+            "description": "JWT is missing."
           },
-          "404": { "description": "Address not found" },
+          "404": { "description": "Address not found."},
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -781,14 +784,14 @@
       },
       "delete": {
         "summary": "Deleta um endereço",
-        "description": "Essa rota é responsável por deletar um endereço",
+        "description": "Essa rota é responsável por deletar um endereço.",
         "tags": ["Addresses"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID do endereço",
+            "description": "ID do endereço.",
             "required": true,
             "type": "string",
             "format": "uuid"
@@ -796,14 +799,14 @@
         ],
         "responses": {
           "400": {
-            "description": "JWT Expired or sended in a wrong way"
+            "description": "JWT Expired or sended in a wrong way."
           },
           "401": {
-            "description": "JWT is missing"
+            "description": "JWT is missing."
           },
-          "404": { "description": "Address not found" },
+          "404": { "description": "Address not found."},
           "204": {
-            "description": "No body returned for response"
+            "description": "No body returned for response."
           }
         }
       }
@@ -1035,7 +1038,7 @@
         },
         "example": {
           "name": "Pizza de Calabresa",
-          "description": "Calabresa fatiada, mussarela, molho de tomate",
+          "description": "Calabresa fatiada, mussarela, molho de tomate.",
           "price": 50,
           "id": "073273f2-1984-4d1f-8326-1411880dc7b4",
           "created_at": "2022-01-24T21:37:17.251Z",
@@ -1048,7 +1051,7 @@
           "name": {
             "type": "string"
           },
-          "description": {
+          "description":{
             "type": "string"
           },
           "price": {
@@ -1057,7 +1060,7 @@
         },
         "example": {
           "name": "Pizza de Calabresa",
-          "description": "Calabresa fatiada, mussarela, molho de tomate",
+          "description": "Calabresa fatiada, mussarela, molho de tomate.",
           "price": 50
         }
       },
@@ -1067,7 +1070,7 @@
           "name": {
             "type": "string"
           },
-          "description": {
+          "description":{
             "type": "string"
           },
           "price": {
@@ -1076,7 +1079,7 @@
         },
         "example": {
           "name": "Pizza de Atum",
-          "description": "Atum desfiado, molho de tomate",
+          "description": "Atum desfiado, molho de tomate.",
           "price": 45
         }
       },
@@ -1090,7 +1093,7 @@
           {
             "id": "073273f2-1984-4d1f-8326-1411880dc7b4",
             "name": "Pizza de Calabresa",
-            "description": "Calabresa fatiada, mussarela, molho de tomate",
+            "description": "Calabresa fatiada, mussarela, molho de tomate.",
             "price": "50.00",
             "created_at": "2022-01-24T21:37:17.251Z",
             "updated_at": "2022-01-24T21:37:17.251Z"
@@ -1098,7 +1101,7 @@
           {
             "id": "2e55b69c-9d3c-4d02-a2da-ea9b155def3a",
             "name": "Pizza de Frango",
-            "description": "Frango desfiado, catupiry, molho de tomate",
+            "description": "Frango desfiado, catupiry, molho de tomate.",
             "price": "65.00",
             "created_at": "2022-07-04T01:37:17.001Z",
             "updated_at": "2022-10-23T20:40:06.865Z"
@@ -1195,7 +1198,7 @@
               "product": {
                 "id": "9b51b6b3-1bae-4a9f-90b3-c324e12e3411",
                 "name": "Pizza de Calabresa",
-                "description": "Calabresa ralado, mussarela, molho de tomate",
+                "description": "Calabresa ralado, mussarela, molho de tomate.",
                 "price": "39.00",
                 "created_at": "2022-01-25T21:14:27.550Z",
                 "updated_at": "2022-01-25T21:14:27.550Z"
@@ -1206,7 +1209,7 @@
               "product": {
                 "id": "2613ad7d-92ea-42ae-8664-5d1fa649109f",
                 "name": "Pizza de Mussarela",
-                "description": "Mussarela ralado, azeitona, molho de tomate",
+                "description": "Mussarela ralado, azeitona, molho de tomate.",
                 "price": "39.00",
                 "created_at": "2022-01-25T21:14:48.276Z",
                 "updated_at": "2022-01-25T21:14:48.276Z"
@@ -1250,7 +1253,7 @@
                 "product": {
                   "id": "9b51b6b3-1bae-4a9f-90b3-c324e12e3411",
                   "name": "Pizza de Calabresa",
-                  "description": "Calabresa ralado, mussarela, molho de tomate",
+                  "description": "Calabresa ralado, mussarela, molho de tomate.",
                   "price": "39.00",
                   "created_at": "2022-01-25T21:14:27.550Z",
                   "updated_at": "2022-01-25T21:14:27.550Z"
@@ -1261,7 +1264,7 @@
                 "product": {
                   "id": "2613ad7d-92ea-42ae-8664-5d1fa649109f",
                   "name": "Pizza de Mussarela",
-                  "description": "Mussarela ralado, azeitona, molho de tomate",
+                  "description": "Mussarela ralado, azeitona, molho de tomate.",
                   "price": "39.00",
                   "created_at": "2022-01-25T21:14:48.276Z",
                   "updated_at": "2022-01-25T21:14:48.276Z"
@@ -1285,7 +1288,7 @@
                 "product": {
                   "id": "0aaf9f09-89b5-41b7-988d-19448bfedb36",
                   "name": "Pizza de Alho",
-                  "description": "Alho ralado, mussarela, molho de tomate",
+                  "description": "Alho ralado, mussarela, molho de tomate.",
                   "price": "19.00",
                   "created_at": "2022-01-25T21:14:10.729Z",
                   "updated_at": "2022-01-25T21:14:10.729Z"
@@ -1296,7 +1299,7 @@
                 "product": {
                   "id": "2613ad7d-92ea-42ae-8664-5d1fa649109f",
                   "name": "Pizza de Mussarela",
-                  "description": "Mussarela ralado, azeitona, molho de tomate",
+                  "description": "Mussarela ralado, azeitona, molho de tomate.",
                   "price": "39.00",
                   "created_at": "2022-01-25T21:14:48.276Z",
                   "updated_at": "2022-01-25T21:14:48.276Z"
