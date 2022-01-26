@@ -20,7 +20,7 @@ class UpdateProductService {
 
     const product = await productsRepository.findOne({ id });
     if (!product) {
-      throw new AppError("Not found any product with this id");
+      throw new AppError("Not found any product with this id", 404);
     }
 
     price ? (product.price = price) : product.price;

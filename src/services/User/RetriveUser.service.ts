@@ -16,7 +16,7 @@ export default class RetrieveUserService {
             }
         });
 
-        if (!user) throw new AppError("User not found.")
+        if (!user) throw new AppError("User not found.", 404)
 
         return user;
     };

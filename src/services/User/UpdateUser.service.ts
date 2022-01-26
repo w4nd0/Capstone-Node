@@ -23,7 +23,7 @@ export default class UpdateUserService {
             isActive: true,
         });
     
-        if (!user) throw new AppError("User not found.");
+        if (!user) throw new AppError("User not found.", 404);
       
         userData.name ? (user.name = userData.name) : user.name
         userData.email ? (user.email = userData.email) : user.email

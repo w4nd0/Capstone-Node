@@ -9,7 +9,7 @@ class RetrieveOrderService {
     const order = await ordersRepository
       .findOneOrFail({ id })
       .catch((error: any) => {
-        throw new AppError("Order not found");
+        throw new AppError("Order not found", 404);
       });
 
     return order;

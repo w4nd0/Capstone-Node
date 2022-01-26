@@ -35,7 +35,7 @@ export default class UpdatePasswordService {
         });
 
         if (!user) {
-            throw new AppError("User does not exist");
+            throw new AppError("User does not exist", 404);
         };
         
         if (password !== confirmation) {

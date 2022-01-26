@@ -13,7 +13,7 @@ class UpdateOrderService {
 
     const order = await ordersRepository.findOne({ id });
     if (!order) {
-      throw new AppError("Not found any Order with this id");
+      throw new AppError("Not found any Order with this id", 404);
     }
 
     status ? (order.status = status) : order.status;

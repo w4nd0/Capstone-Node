@@ -6,9 +6,9 @@ export const create = async (request: Request, response: Response) => {
   const createOrderService = new CreateOrderService();
 
   const newOrder = await createOrderService.execute({
-    id: request.user.id,
+    userId: request.user.id,
     ...request.body,
   });
 
-  return response.json(instanceToInstance(newOrder));
+  return response.status(201).json(instanceToInstance(newOrder));
 };

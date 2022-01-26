@@ -15,7 +15,7 @@ export default class ListAddressService {
             }
         })
 
-        if (!addresses) throw new AppError("Addresses not found.");
+        if (!addresses) throw new AppError("Addresses not found.", 404);
 
         return addresses;
     }
