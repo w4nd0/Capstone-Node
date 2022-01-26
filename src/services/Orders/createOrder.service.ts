@@ -14,15 +14,16 @@ interface IOrder {
 interface IRequest {
   userId: string;
   order: IOrder;
-  products_ids: string[];
+  products: IProduct[];
+}
+
+interface IProduct {
+  id: string;
+  quantity: number;
 }
 
 class CreateOrderService {
-  async execute({
-    userId,
-    order,
-    products_ids,
-  }: IRequest): Promise<Order | Error> {
+  async execute({ userId, order, products }: IRequest): Promise<Order | Error> {
     try {
       const orderRepository = getRepository(Order);
       const orderProductsRepository = getRepository(OrderProduct);
@@ -36,17 +37,21 @@ class CreateOrderService {
 
       await orderRepository.save(newOrder);
 
-      for (let i = 0; i < products_ids.length; i++) {
+      for (let i = 0; i < products.length; i++) {
         const productRepository = getRepository(Product);
         const product = await productRepository.findOneOrFail({
-          id: products_ids[i],
+          id: products[i].id,
         });
 
         const orderProduct = orderProductsRepository.create({
           orderId: newOrder.id,
-          productId: products_ids[i],
+          productId: products[i].id,
           price: product.price,
         });
+
+        products[i].quantity
+          ? (orderProduct.quantity = products[i].quantity)
+          : (orderProduct.quantity = 1);
 
         await orderProductsRepository.save(orderProduct);
       }
