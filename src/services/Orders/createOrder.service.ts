@@ -39,9 +39,13 @@ class CreateOrderService {
 
       for (let i = 0; i < products.length; i++) {
         const productRepository = getRepository(Product);
-        const product = await productRepository.findOneOrFail({
-          id: products[i].id,
-        });
+        const product = await productRepository
+          .findOneOrFail({
+            id: products[i].id,
+          })
+          .catch((e) => {
+            throw new AppError("Product not found", 404);
+          });
 
         const orderProduct = orderProductsRepository.create({
           orderId: newOrder.id,

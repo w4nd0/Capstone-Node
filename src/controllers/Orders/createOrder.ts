@@ -10,5 +10,5 @@ export const create = async (request: Request, response: Response) => {
     ...request.body,
   });
 
-  return response.json(instanceToInstance(newOrder));
+  return response.status(201).json(instanceToInstance(newOrder));
 };
