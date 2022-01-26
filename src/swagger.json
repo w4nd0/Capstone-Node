@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Kenzie Pizzas API",
-    "description": "Rotas da API, projeto do capstone Q4 utilizando Node.js",
+    "description": "Lista com as rotas da API, projeto do capstone Q4 utilizando Node.js",
     "contact": {
       "name": "API Ajuda",
       "url": "http://www.kenzie-pizza.com/support",
@@ -15,6 +15,10 @@
     {
       "url": "http://localhost:3000/",
       "description": "local"
+    },
+    {
+      "url": "https://capstone-nodejs.herokuapp.com/",
+      "description": "production"
     }
   ],
 
@@ -385,6 +389,16 @@
         "description": "Essa rota é responsável por deletar um produto",
         "tags": ["Products"],
         "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do carrinho",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
         "responses": {
           "400": {
             "description": "'JWT Expired or sended in a wrong way', 'Product not found'"
@@ -422,6 +436,7 @@
           "401": {
             "description": "JWT is missing"
           },
+          "404": { "description": "Product not found" },
           "201": {
             "description": "Created",
             "content": {
@@ -436,9 +451,9 @@
         }
       },
       "get": {
-        "summary": "Lista todos os carrinhos",
-        "description": "Essa rota é responsável por listar todos os carrinhos",
-        "tags": ["orders"],
+        "summary": "Lista todas as compras",
+        "description": "Essa rota é responsável por listar todas as compras",
+        "tags": ["Orders"],
         "security": [{ "bearerAuth": [] }],
         "responses": {
           "401": {
@@ -450,7 +465,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "$ref": "#/components/schemas/ArrayOforders"
+                  "$ref": "#/components/schemas/ArrayOfOrders"
                 }
               }
             }
@@ -460,9 +475,9 @@
     },
     "/order/{id}": {
       "get": {
-        "summary": "Buscar um carrinho",
-        "description": "Essa rota é responsável por buscar um carrinho",
-        "tags": ["orders"],
+        "summary": "Buscar uma compra",
+        "description": "Essa rota é responsável por buscar uma compra",
+        "tags": ["Orders"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
@@ -541,6 +556,16 @@
         "description": "Essa rota é responsável por deletar uma compra",
         "tags": ["Orders"],
         "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da compra",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
         "responses": {
           "400": {
             "description": "JWT Expired or sended in a wrong way"
@@ -555,7 +580,6 @@
         }
       }
     },
-
 
     "/addresses": {
       "post": {
@@ -568,7 +592,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "$ref": "#/components/schemas/NewOrder"
+                "$ref": "#/components/schemas/NewAddress"
               }
             }
           }
@@ -586,7 +610,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/Address"
                 }
               }
             }
@@ -594,13 +618,15 @@
         }
       },
       "get": {
-        "summary": "Lista todos os carrinhos",
-        "description": "Essa rota é responsável por listar todos os carrinhos",
-        "tags": ["orders"],
-        "security": [{ "bearerAuth": [] }],
+        "summary": "Lista todos os endereços",
+        "description": "Essa rota é responsável por listar todos os endereços",
+        "tags": ["Addresses"],
         "responses": {
+          "400": {
+            "description": "JWT Expired or sended in a wrong way"
+          },
           "401": {
-            "description": "Missing admin permissions"
+            "description": "JWT is missing"
           },
           "200": {
             "description": "OK",
@@ -608,7 +634,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "$ref": "#/components/schemas/ArrayOforders"
+                  "$ref": "#/components/schemas/ArrayOfAddresses"
                 }
               }
             }
@@ -618,28 +644,33 @@
     },
     "/addresses/{id}": {
       "get": {
-        "summary": "Buscar um carrinho",
-        "description": "Essa rota é responsável por buscar um carrinho",
-        "tags": ["orders"],
-        "security": [{ "bearerAuth": [] }],
+        "summary": "Buscar um endereço",
+        "description": "Essa rota é responsável por buscar um endereço",
+        "tags": ["Addresses"],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID da compra",
+            "description": "ID do endereço",
             "required": true,
             "type": "string",
             "format": "uuid"
           }
         ],
         "responses": {
+          "400": {
+            "description": "JWT Expired or sended in a wrong way"
+          },
+          "401": {
+            "description": "JWT is missing"
+          },
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "$ref": "#/components/schemas/order"
+                  "$ref": "#/components/schemas/Address"
                 }
               }
             }
@@ -647,15 +678,15 @@
         }
       },
       "patch": {
-        "summary": "Atualiza o status de uma compra",
-        "description": "Essa rota é responsável por atualizar o andamento de uma compra",
-        "tags": ["Orders"],
+        "summary": "Atualiza um endereço",
+        "description": "Essa rota é responsável por atualizar um endereço",
+        "tags": ["Addresses"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID da compra",
+            "description": "ID do endereço",
             "required": true,
             "type": "string",
             "format": "uuid"
@@ -667,7 +698,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "status": { "type": "string", "default": "failed" }
+                  "city": { "type": "string", "example": "cidade update" },
+                  "street": { "type": "string", "example": "rua update" },
+                  "number": { "type": "string", "example": 42 }
                 }
               }
             }
@@ -680,14 +713,14 @@
           "401": {
             "description": "JWT is missing"
           },
-          "404": { "description": "Not found any Order with this id" },
+          "404": { "description": "Address not found" },
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "$ref": "#/components/schemas/UpdateOrder"
+                  "$ref": "#/components/schemas/UpdateAddress"
                 }
               }
             }
@@ -695,10 +728,20 @@
         }
       },
       "delete": {
-        "summary": "Deleta uma compra",
-        "description": "Essa rota é responsável por deletar uma compra",
-        "tags": ["Orders"],
+        "summary": "Deleta um endereço",
+        "description": "Essa rota é responsável por deletar um endereço",
+        "tags": ["Addresses"],
         "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do endereço",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
         "responses": {
           "400": {
             "description": "JWT Expired or sended in a wrong way"
@@ -706,15 +749,13 @@
           "401": {
             "description": "JWT is missing"
           },
-          "404": { "description": "Order not found" },
+          "404": { "description": "Address not found" },
           "204": {
             "description": "No body returned for response"
           }
         }
       }
     }
-
-
   },
 
   "components": {
@@ -845,7 +886,7 @@
         "type": "array",
         "items": {
           "type": "object",
-          "$ref": "#components/schemas/User"
+          "$ref": "#/components/schemas/User"
         },
         "example": [
           {
@@ -981,7 +1022,7 @@
         "type": "array",
         "items": {
           "type": "object",
-          "$ref": "#components/schemas/Product"
+          "$ref": "#/components/schemas/Product"
         },
         "example": [
           {
@@ -1006,29 +1047,21 @@
       "NewOrder": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
           "order": {
             "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "quantity": { "type": "integer", "default": 1 }
+            }
+          },
+          "products": {
+            "type": "array",
             "properties": {
               "city": { "type": "string" },
               "street": { "type": "string" },
               "integer": { "type": "integer" }
-            },
-            "exmaple": {
-              "order": {
-                "city": "cidade teste",
-                "street": "rua teste",
-                "integer": 57
-              },
-              "products_ids": [
-                "2613ad7d-92ea-42ae-8664-5d1fa649109f",
-                "c69c36d3-ad70-466a-a775-46c772af95bd"
-              ]
             }
-          },
-          "products_ids": { "type": "array", "item": "string" }
+          }
         },
         "example": {
           "order": {
@@ -1036,9 +1069,14 @@
             "street": "rua teste",
             "number": 42
           },
-          "products_ids": [
-            "2613ad7d-92ea-42ae-8664-5d1fa649109f",
-            "9b51b6b3-1bae-4a9f-90b3-c324e12e3411"
+          "products": [
+            {
+              "id": "9b51b6b3-1bae-4a9f-90b3-c324e12e3411"
+            },
+            {
+              "id": "2613ad7d-92ea-42ae-8664-5d1fa649109f",
+              "quantity": 2
+            }
           ]
         }
       },
@@ -1076,29 +1114,20 @@
             "type": "array",
             "$ref": "#/components/schemas/ArrayOfProducts"
           },
-          "subtotal": { "type": "integer" }
+          "subtotal": {
+            "type": "integer"
+          }
         },
         "example": {
-          "id": "720dc69c-e1fa-40f6-ad52-25e93ce6f2be",
+          "id": "277c540a-49ea-4313-9353-89ed87cd4c37",
           "userId": "6f7b294a-f200-45da-ab32-d23d6d3c34d6",
-          "city": "cidade teste",
-          "street": "rua teste",
+          "city": "teste cidade",
+          "street": "teste cidade",
           "number": 42,
           "status": "pending",
-          "created_at": "2022-01-26T13:35:28.981Z",
-          "updated_at": "2022-01-26T13:35:28.981Z",
+          "created_at": "2022-01-26T16:52:59.999Z",
+          "updated_at": "2022-01-26T16:52:59.999Z",
           "products": [
-            {
-              "quantity": 1,
-              "product": {
-                "id": "2613ad7d-92ea-42ae-8664-5d1fa649109f",
-                "name": "Pizza de Mussarela",
-                "description": "Mussarela ralado, azeitona, molho de tomate",
-                "price": "39.00",
-                "created_at": "2022-01-25T21:14:48.276Z",
-                "updated_at": "2022-01-25T21:14:48.276Z"
-              }
-            },
             {
               "quantity": 1,
               "product": {
@@ -1109,9 +1138,20 @@
                 "created_at": "2022-01-25T21:14:27.550Z",
                 "updated_at": "2022-01-25T21:14:27.550Z"
               }
+            },
+            {
+              "quantity": 2,
+              "product": {
+                "id": "2613ad7d-92ea-42ae-8664-5d1fa649109f",
+                "name": "Pizza de Mussarela",
+                "description": "Mussarela ralado, azeitona, molho de tomate",
+                "price": "39.00",
+                "created_at": "2022-01-25T21:14:48.276Z",
+                "updated_at": "2022-01-25T21:14:48.276Z"
+              }
             }
           ],
-          "subtotal": 78
+          "subtotal": 117
         }
       },
       "UpdateOrder": {
@@ -1130,35 +1170,165 @@
         "type": "array",
         "items": {
           "type": "object",
-          "$ref": "#components/schemas/Order"
+          "$ref": "#/components/schemas/Order"
         },
         "example": [
           {
-            "id": "ed600b17-dd16-43dd-bb50-fd95c85baa9c",
-            "total": "1800.00",
-            "userId": "bbbd8219-738d-4091-a5ee-e7fd1a4c4025",
-            "createdOn": "2022-01-22T23:54:21.133Z",
-            "updatedOn": "2022-01-22T23:54:21.245Z",
+            "id": "277c540a-49ea-4313-9353-89ed87cd4c37",
+            "userId": "6f7b294a-f200-45da-ab32-d23d6d3c34d6",
+            "city": "teste cidade",
+            "street": "teste cidade",
+            "number": 42,
+            "status": "pending",
+            "created_at": "2022-01-26T16:52:59.999Z",
+            "updated_at": "2022-01-26T16:52:59.999Z",
             "products": [
               {
+                "quantity": 1,
                 "product": {
-                  "id": "e18d4518-fe01-4912-8af8-c7eeb7746d6c",
-                  "name": "TV '28",
-                  "price": "1000.00",
-                  "createdOn": "2022-01-22T23:53:25.686Z",
-                  "updatedOn": "2022-01-22T23:53:25.686Z"
+                  "id": "9b51b6b3-1bae-4a9f-90b3-c324e12e3411",
+                  "name": "Pizza de Calabresa",
+                  "description": "Calabresa ralado, mussarela, molho de tomate",
+                  "price": "39.00",
+                  "created_at": "2022-01-25T21:14:27.550Z",
+                  "updated_at": "2022-01-25T21:14:27.550Z"
                 }
               },
               {
+                "quantity": 2,
                 "product": {
-                  "id": "d019dcfc-59ed-4a94-9223-c99e2f9e2986",
-                  "name": "Monitor '20",
-                  "price": "800.00",
-                  "createdOn": "2022-01-22T23:53:17.979Z",
-                  "updatedOn": "2022-01-22T23:53:17.979Z"
+                  "id": "2613ad7d-92ea-42ae-8664-5d1fa649109f",
+                  "name": "Pizza de Mussarela",
+                  "description": "Mussarela ralado, azeitona, molho de tomate",
+                  "price": "39.00",
+                  "created_at": "2022-01-25T21:14:48.276Z",
+                  "updated_at": "2022-01-25T21:14:48.276Z"
                 }
               }
-            ]
+            ],
+            "subtotal": 117
+          },
+          {
+            "id": "98935f45-baab-41cb-8640-c33df388089a",
+            "userId": "6f7b294a-f200-45da-ab32-d23d6d3c34d6",
+            "city": "teste cidade1",
+            "street": "teste cidade1",
+            "number": 42,
+            "status": "pending",
+            "created_at": "2022-01-26T18:40:53.039Z",
+            "updated_at": "2022-01-26T18:40:53.039Z",
+            "products": [
+              {
+                "quantity": 1,
+                "product": {
+                  "id": "0aaf9f09-89b5-41b7-988d-19448bfedb36",
+                  "name": "Pizza de Alho",
+                  "description": "Alho ralado, mussarela, molho de tomate",
+                  "price": "19.00",
+                  "created_at": "2022-01-25T21:14:10.729Z",
+                  "updated_at": "2022-01-25T21:14:10.729Z"
+                }
+              },
+              {
+                "quantity": 1,
+                "product": {
+                  "id": "2613ad7d-92ea-42ae-8664-5d1fa649109f",
+                  "name": "Pizza de Mussarela",
+                  "description": "Mussarela ralado, azeitona, molho de tomate",
+                  "price": "39.00",
+                  "created_at": "2022-01-25T21:14:48.276Z",
+                  "updated_at": "2022-01-25T21:14:48.276Z"
+                }
+              }
+            ],
+            "subtotal": 58
+          }
+        ]
+      },
+
+      "NewAddress": {
+        "type": "object",
+        "properties": {
+          "city": { "type": "string" },
+          "street": { "type": "string" },
+          "number": { "type": "integer" }
+        },
+        "example": {
+          "city": "cidade teste",
+          "street": "rua teste",
+          "number": 42
+        }
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "city": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "number": {
+            "type": "integer"
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string", "format": "uuid" }
+            }
+          }
+        },
+        "example": {
+          "userId": "6f7b294a-f200-45da-ab32-d23d6d3c34d6",
+          "city": "cidade teste",
+          "street": "rua teste",
+          "number": 42,
+          "user": {
+            "id": "6f7b294a-f200-45da-ab32-d23d6d3c34d6"
+          },
+          "id": "3281b7d6-288c-4076-a49d-b2f500b524a3"
+        }
+      },
+      "UpdateAddress": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Address"
+          },
+          {
+            "example": {
+              "city": "cidade update",
+              "street": "rua update"
+            }
+          }
+        ]
+      },
+      "ArrayOfAddress": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/Address"
+        },
+        "example": [
+          {
+            "id": "3281b7d6-288c-4076-a49d-b2f500b524a3",
+            "userId": "6f7b294a-f200-45da-ab32-d23d6d3c34d6",
+            "city": "cidade update",
+            "street": "rua update",
+            "number": 42
+          },
+          {
+            "id": "a25f48fe-0afa-45f3-a062-7c0bef88d9f4",
+            "userId": "6f7b294a-f200-45da-ab32-d23d6d3c34d6",
+            "city": "cidade teste2",
+            "street": "rua teste2",
+            "number": 42
           }
         ]
       }
