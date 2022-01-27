@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { create } from "../controllers/Orders/createOrder";
-import { destroy } from "../controllers/Orders/deleteOrder";
-import { list } from "../controllers/Orders/listOrder";
-import { retrieve } from "../controllers/Orders/retrieveOrder";
-import { update } from "../controllers/Orders/updateOrder";
+import { create } from "../controllers/Orders/create";
+import { destroy } from "../controllers/Orders/delete";
+import { list } from "../controllers/Orders/list";
+import { retrieve } from "../controllers/Orders/retrieve";
+import { update } from "../controllers/Orders/update";
 import admAuth from "../middlewares/authentication/admAuth";
 
 import userAuth from "../middlewares/authentication/userAuth";
