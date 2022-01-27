@@ -27,7 +27,7 @@ class CreateOrderService {
     try {
       const orderRepository = getRepository(Order);
       const orderProductsRepository = getRepository(OrderProduct);
-
+      
       const newOrder = orderRepository.create({
         user: { id: userId },
         city: order.city,
@@ -66,7 +66,12 @@ class CreateOrderService {
 
       return orderAdded;
     } catch (error: any) {
-      throw new AppError(error.message);
+      if (error instanceof AppError) {
+        throw new AppError(error.message, error.statusCode)
+      };
+      console.error(error)
+
+      throw new AppError("Internal Error", 500);
     }
   }
 }
