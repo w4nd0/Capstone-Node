@@ -33,11 +33,11 @@ export default async function admAuth (request: Request, response: Response, nex
 
     if (!user) {
         throw new AppError("JWT Expired or sended in a wrong way");
-    }
+    };
 
     if (!user.isAdm) {
         throw new AppError("Unauthorized", 401);
-    }
+    };
 
     request.user = {
         id: sub,
