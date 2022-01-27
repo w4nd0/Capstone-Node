@@ -1,18 +1,30 @@
 import Order from "../../entities/Order";
 import { getRepository } from "typeorm";
-import AppError from "../../errors/AppError";
+import User from "../../entities/User";
+
+interface Request {
+  userId: string;
+}
 
 class ListOrdersService {
-  async execute(): Promise<Order[] | Error> {
-    try {
-      const ordersRepository = getRepository(Order);
+  async execute({ userId }: Request): Promise<Order[] | Error> {
+    const userRepository = getRepository(User);
+    const user = await userRepository.findOne({ id: userId });
 
-      const orders = ordersRepository.find();
+    const ordersRepository = getRepository(Order);
+    let orders: Promise<Order[]>;
 
-      return orders;
-    } catch (error: any) {
-      throw new AppError(error.message);
-    }
+    if (user && user.isAdm) {
+      orders = ordersRepository.find();  
+    } else {
+      orders = ordersRepository.find({
+        where: {
+          userId,
+        }
+      }); 
+    };
+
+    return orders;
   }
 }
 
