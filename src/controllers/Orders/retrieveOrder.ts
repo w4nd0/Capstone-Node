@@ -1,13 +1,16 @@
 import { instanceToInstance } from "class-transformer";
 import { Request, Response } from "express";
-import RetrieveOrderService from "../../services/Orders/retrieveOrder.service";
+import RetrieveOrderService from "../../services/Orders/RetrieveOrder.service";
 
 export const retrieve = async (request: Request, response: Response) => {
   const retrieveOrderService = new RetrieveOrderService();
 
   const { id } = request.params;
 
-  const order = await retrieveOrderService.execute(id);
+  const order = await retrieveOrderService.execute({
+    id,
+    userId: request.user.id,
+  });
 
   return response.json(instanceToInstance(order));
 };
