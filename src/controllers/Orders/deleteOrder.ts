@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import DeleteOrderService from "../../services/Orders/deleteOrder.service";
+import DeleteOrderService from "../../services/Orders/DeleteOrder.service";
 
 export const destroy = async (request: Request, response: Response) => {
   const { id } = request.params;

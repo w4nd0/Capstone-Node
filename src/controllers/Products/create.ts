@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import CreateProductService from "../../services/Products/createProduct.service";
+import CreateProductService from "../../services/Products/CreateProduct.service";
 
 export const create = async (request: Request, response: Response) => {
   const createProductService = new CreateProductService();

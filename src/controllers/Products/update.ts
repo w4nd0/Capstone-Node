@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import UpdateProductsService from "../../services/Products/updateProduct.service";
+import UpdateProductsService from "../../services/Products/UpdateProduct.service";
 
 export const update = async (request: Request, response: Response) => {
   const data = request.body;

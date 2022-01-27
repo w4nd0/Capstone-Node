@@ -1,0 +1,36 @@
+<style>
+  .message-content { font-family: Arial, Helvetica, sans-serif; max-width:
+  600px; font-size: 18px; line-height: 21px; } table { min-width: 250px;
+  text-align: center; border: 1px solid black; border-radius: 5px; }
+  tr:nth-child(even) { background: #c7c7c7b8; } tr:nth-child(odd) { background:
+  #cfcfcf7a; }
+</style>
+<div class="message-content">
+  <h3>
+    Olá
+    {{name}}
+  </h3>
+  <p>
+    Confira os itens da sua ultima compra:
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Preço</th>
+      </tr>
+    </thead>
+    {{#each order.products}}
+      <tr>
+        <td>{{this.product.name}}</td>
+        <td>R${{this.product.price}}</td>
+      </tr>
+    {{/each}}
+    <tfoot>
+      <tr>
+        <td style="font-size: 14px;">TOTAL</td>
+        <td>{{total}}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
