@@ -18,7 +18,7 @@ export default class UpdateAdmService {
     
         if (!user) throw new AppError("User not found.", 404);
       
-        user.isAdm = isAdm
+        user.isAdm = isAdm;
         
         await userRepository.save(user);
 
