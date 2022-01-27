@@ -6,7 +6,7 @@ import User from "../../entities/User";
 import Order from "../../entities/Order";
 import Product from "../../entities/Product";
 import CreateUserService from "../../services/User/CreateUser.service";
-import CreateProductService from "../../services/Products/createProduct.service";
+import CreateProductService from "../../services/Products/CreateProduct.service";
 
 describe("Testing the order routes with success", () => {
   beforeAll(async () => {
