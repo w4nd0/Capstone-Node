@@ -4,20 +4,10 @@ import AppError from "../../errors/AppError";
 import hbs from "nodemailer-express-handlebars";
 import { getRepository } from "typeorm";
 import User from "../../entities/User";
-
-interface IProduct {
-  name: string;
-  price: number;
-}
-
-interface IOrder {
-  userId: string;
-  products: IProduct[];
-  getSubtotal: () => number;
-}
+import Order from "../../entities/Order";
 
 export default class SendOrderEmailService {
-  public async execute(order: IOrder): Promise<void> {
+  public async execute(order: Order): Promise<void> {
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: 2525,

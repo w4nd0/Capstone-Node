@@ -395,7 +395,7 @@
       },
       "patch": {
         "summary": "Atualiza um produto",
-        "description": "Essa rota é responsável por atualizar um produto (Somente Administrador)..",
+        "description": "Essa rota é responsável por atualizar um produto (Somente Administrador).",
         "tags": ["Products"],
         "security": [{ "bearerAuth": [] }],
         "requestBody": {
@@ -686,7 +686,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "$ref": "#/components/schemas/ArrayOfAddresses"
+                  "$ref": "#/components/schemas/ArrayOfAddress"
                 }
               }
             }
