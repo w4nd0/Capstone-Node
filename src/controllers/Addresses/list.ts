@@ -1,3 +1,4 @@
+import { instanceToInstance } from "class-transformer";
 import { Request, Response } from "express";
 import ListAddressService from "../../services/Address/ListAddress.service";
 
@@ -7,5 +8,5 @@ export const list = async (request: Request, response: Response) => {
         userId: request.user.id,
     });
   
-    return response.json(addresses);
+    return response.json(instanceToInstance(addresses));
 };
