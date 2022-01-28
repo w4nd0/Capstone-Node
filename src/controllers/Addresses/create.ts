@@ -1,3 +1,4 @@
+import { instanceToInstance } from "class-transformer";
 import { Request, Response } from "express";
 import CreateAddressService from "../../services/Address/CreateAddress.service";
 
@@ -12,5 +13,5 @@ export const create = async (request: Request, response: Response) => {
         number,
     });
   
-    return response.status(201).json(address);
+    return response.status(201).json(instanceToInstance(address));
 };
